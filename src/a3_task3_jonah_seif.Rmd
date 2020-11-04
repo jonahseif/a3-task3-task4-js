@@ -1,5 +1,5 @@
 ---
-title: "Assignment 3 Task 3-4"
+title: "Assignment 3 Task 3"
 author: "Jonah Seif"
 date: "11/3/2020"
 output: html_document
