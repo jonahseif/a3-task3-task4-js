@@ -50,8 +50,36 @@ ggplot(data = purple_napl_jan_2010, aes(sample = size))+
   facet_wrap(~treatment)
 ```
 
+Based on the histograms and QQ-plots, the distribution of purple urchins in January of 2010 from Naples Reef for both the annual and control treatments looks somewhat normal. While not perfect, the histograms are somewhat bell shaped and the QQ-plots are fairly linear. The control treatment group also appears to have a slightly less spread and a narrower distribution. From this data, I feel okay about using a t-test to compare my sample means.
 
+## Create a basic table of descriptive statistics 
 
+```{r}
+purple_napl_jan_2010 %>% 
+  group_by(treatment) %>% 
+  summarize(mean = mean(size),
+         median = median(size),
+         sd = sd(size),
+         n = n())
+```
+
+## Perform a two-sample t-test to compare means between the two groups
+- First, create two vectors for size by treatment type
+
+```{r}
+purple_napl_j10_control <- purple_napl_jan_2010 %>%  
+  filter(treatment == "CONTROL") %>% 
+  pull(size)
+
+purple_napl_j10_annual <- purple_napl_jan_2010 %>% 
+  filter(treatment == "ANNUAL") %>% 
+  pull(size)
+
+t.test(purple_napl_j10_annual, purple_napl_j10_control)
+```
+
+Based on my exploratory graphs, statistical data, and two sample t-test, it appears that my two sample means are not very different. The sample with annual treatment had a mean of 3.92cm and the control treatment sample had a mean diameter of 3.73cm. With a difference of only 0.19cm (4.95% difference) in average urchin diameter, these two sample means do not vary greatly. Also, with standard deviations of 0.97 and 0.87, the distribution of urchin size is also somewhat similar. 
+My p-value tells me that there is about a 25% chance that I could have randomly selected samples with means that are at least as different at these two sample means, if they were actually taken from populations that had the same mean.
 
 
 
