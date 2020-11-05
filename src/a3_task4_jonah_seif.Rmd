@@ -6,6 +6,56 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(janitor)
+library(here)
+library(lubridate)
 ```
+
+
+## Read in urchins data
+
+```{r}
+urchins_clean <- read_csv(here("data", "urchins.csv")) %>% 
+  clean_names()
+```
+
+## Wrangle urchins data to include only purple urchins observed in January 2010 at Naples Reef
+
+```{r}
+purple_napl_jan_2010 <- urchins_clean %>% 
+  mutate(date_new = mdy(date),
+         month = month(date_new),
+         year = year(date_new)) %>% 
+  filter(common_name == "Purple Urchin",
+         site == "NAPL",
+         month == 1,
+         year == 2010)
+```
+
+
+## Exploratory data visualization for size of purple urchins by either control or annual treatment
+- Use both histogram and QQ-plots to analyze
+
+```{r}
+purple_napl_jan_2010 %>% 
+  ggplot(aes(x = size))+
+  geom_histogram(bins = 15)+
+  facet_wrap(~treatment)+
+  labs(x = "Urchin Diameter (cm)", y = "Count")
+
+ggplot(data = purple_napl_jan_2010, aes(sample = size))+
+  geom_qq()+
+  facet_wrap(~treatment)
+```
+
+
+
+
+
+
+
+
+
 

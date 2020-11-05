@@ -409,7 +409,15 @@ urchin_stats</code></pre>
 ##   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1 Purple Urchin  4.47  1.18    4.5 31805
 ## 2 Red Urchin     6.78  1.89    7   27408</code></pre>
-<p>Based on the table and graphs above, we see that purple urchins have a narrower size distribution and a lower mean size compared to red urchins. The histograms show a fairly normal distribution for red urchins and a narrower, close to normal distribution for purple urchins, but with a positive tail. The standard deviation numbers from our table also demonstrate that the red urchin sample population has a greater spread of sizes compared to the purple urchin sample population. Specifically, the red urchins also have an average diameter 51.68% larger than the purple urchins, or 2.31cm bigger.</p>
+<pre class="r"><code>cohen.d(c(6.78,4.47), c(1.89, 1.175))</code></pre>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: 3.384855 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -3.325291 10.095001</code></pre>
+<p>Based on the table and graphs above, we see that purple urchins have a narrower size distribution and a lower mean size compared to red urchins. The histograms show a fairly normal distribution for red urchins and a narrower, close to normal distribution for purple urchins, but with a positive tail. The standard deviation numbers from our table also demonstrate that the red urchin sample population has a greater spread of sizes compared to the purple urchin sample population. Specifically, the absolute difference of the means is 2.31cm and the Cohen’s d is 3.38, which would indicate a noticable difference between mean urchin diameters.</p>
 </div>
 <div id="explore-purple-urchin-counts-by-site-and-year" class="section level2">
 <h2>Explore purple urchin counts by site and year</h2>

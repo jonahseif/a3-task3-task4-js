@@ -11,6 +11,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(effsize)
 ```
 
 ## Read in sea urchins data and clean names
@@ -49,8 +50,9 @@ urchin_stats <- urchins_clean %>%
             n = n())
 
 urchin_stats
+cohen.d(c(6.78,4.47), c(1.89, 1.175))
 ```
-Based on the table and graphs above, we see that purple urchins have a narrower size distribution and a lower mean size compared to red urchins. The histograms show a fairly normal distribution for red urchins and a narrower, close to normal distribution for purple urchins, but with a positive tail. The standard deviation numbers from our table also demonstrate that the red urchin sample population has a greater spread of sizes compared to the purple urchin sample population. Specifically, the red urchins also have an average diameter 51.68% larger than the purple urchins, or 2.31cm bigger.
+Based on the table and graphs above, we see that purple urchins have a narrower size distribution and a lower mean size compared to red urchins. The histograms show a fairly normal distribution for red urchins and a narrower, close to normal distribution for purple urchins, but with a positive tail. The standard deviation numbers from our table also demonstrate that the red urchin sample population has a greater spread of sizes compared to the purple urchin sample population. Specifically, the absolute difference of the means is 2.31cm and the Cohen's d is 3.38, which would indicate a noticable difference between mean urchin diameters. 
 
 
 ## Explore purple urchin counts by site and year
